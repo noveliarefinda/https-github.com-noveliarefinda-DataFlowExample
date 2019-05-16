@@ -19,8 +19,20 @@ class ViewController: UIViewController {
         fullnameTextField.delegate = self
         phoneTextField.delegate = self 
     }
-
-
+    
+    @IBAction func RegisterUser(_ sender: Any) {
+        performSegue(withIdentifier: "goToHome", sender: nil)
+    }
+    
+// fungsi yg dijalan setelah performSegue, salah satu kegunannya adalah u/passing data
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // jika castingnya berhasil dan dpet homeviewcontrooller maka ..
+        if let destination = segue.destination as? HomeViewController {
+            // kita set nilai name di Homeviewcontroller ke textfield
+            destination.name = fullnameTextField.text
+        }
+    }
+    
 }
 
 extension ViewController: UITextFieldDelegate {
